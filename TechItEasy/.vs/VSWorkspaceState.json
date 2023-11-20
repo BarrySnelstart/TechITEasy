@@ -1,0 +1,19 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\nl",
+    "\\src\\main\\java\\nl\\novi",
+    "\\src\\main\\java\\nl\\novi\\TechItEasy",
+    "\\src\\main\\java\\nl\\novi\\TechItEasy\\controllers",
+    "\\src\\test",
+    "\\src\\test\\java",
+    "\\src\\test\\java\\nl",
+    "\\src\\test\\java\\nl\\novi",
+    "\\src\\test\\java\\nl\\novi\\TechItEasy"
+  ],
+  "SelectedNode": "\\src\\main\\java\\nl\\novi\\TechItEasy\\TechItEasyApplication.java",
+  "PreviewInSolutionExplorer": false
+}
