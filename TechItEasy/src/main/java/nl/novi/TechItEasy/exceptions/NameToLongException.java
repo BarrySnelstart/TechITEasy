@@ -7,7 +7,7 @@ public class NameToLongException extends RuntimeException{
         super();
     }
     public NameToLongException (String message){
-        super(message);
+        super("naam is te lang");
     }
 
 }
