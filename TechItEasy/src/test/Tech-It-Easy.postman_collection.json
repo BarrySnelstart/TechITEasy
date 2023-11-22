@@ -7,23 +7,33 @@
 	},
 	"item": [
 		{
-			"name": "add Tv",
+			"name": "add Tv 1",
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Philips\",\r\n    \"model\" : \"P2345GHZ\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/addTv?addTvName=Philips,LG,Sony,Samsung,No Name,Medion,Cse",
+					"raw": "localhost:8080/television",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"addTv"
+						"television"
 					],
 					"query": [
 						{
 							"key": "addTvName",
-							"value": "Philips,LG,Sony,Samsung,No Name,Medion,Cse"
+							"value": "Philips,LG,Sony,Samsung,No Name,Medion,Cse,groene",
+							"disabled": true
 						}
 					]
 				}
@@ -31,24 +41,108 @@
 			"response": []
 		},
 		{
-			"name": "add Tv Copy",
+			"name": "add Tv 2",
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Lg\",\r\n    \"model\" : \"whoopiedoepie23\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/addTv?addTvName=Philips,LG,Sony,Samsung,No Name,Medion,Cse",
+					"raw": "localhost:8080/television",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"addTv"
-					],
-					"query": [
-						{
-							"key": "addTvName",
-							"value": "Philips,LG,Sony,Samsung,No Name,Medion,Cse"
+						"television"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Tv 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Lg\",\r\n    \"model\" : \"LG 65QNED916QA (2022)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/television",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"television"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Tv 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"TLC\",\r\n    \"model\" : \"TCL 85C845 (2023)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/television",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"television"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Tv 5 exception",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"De tv naam is te lang en zou een exception moeten geven\",\r\n    \"model\" : \"should not be created\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/television",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"television"
 					]
 				}
 			},
@@ -60,13 +154,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/getTvList",
+					"raw": "localhost:8080/television",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"getTvList"
+						"television"
 					]
 				}
 			},
@@ -78,47 +172,61 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/getTv?tvName=sony",
+					"raw": "localhost:8080/television/1001",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"getTv"
-					],
-					"query": [
-						{
-							"key": "tvName",
-							"value": "sony"
-						}
+						"television",
+						"1001"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Change tv Name",
+			"name": "Search single Tv Exception",
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/changeTvName?originalName=LG&nameChange=sony",
+					"raw": "localhost:8080/television/1007",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"changeTvName"
-					],
-					"query": [
-						{
-							"key": "originalName",
-							"value": "LG"
-						},
-						{
-							"key": "nameChange",
-							"value": "sony"
+						"television",
+						"1007"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change a Model name",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"model\": \"1600s\"\r\n}\r\n\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/television/1002",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"television",
+						"1002"
 					]
 				}
 			},
@@ -130,19 +238,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/deleteTv?tvID=1",
+					"raw": "localhost:8080/television/1000",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"deleteTv"
-					],
-					"query": [
-						{
-							"key": "tvID",
-							"value": "1"
-						}
+						"television",
+						"1000"
 					]
 				}
 			},

@@ -21,6 +21,10 @@ public class TelevisionsController {
     public ResponseEntity <Television> addTvToList(@RequestBody Television television) {
         television.setID(id);
         id ++;
+        if(television.getName().length() >  20)
+        {
+            throw new NameToLongException("Name is to long");
+        }
         this.televisionDataBase.add(television);
 
         return new  ResponseEntity<>(television,HttpStatus.CREATED);
@@ -33,8 +37,10 @@ public class TelevisionsController {
         for (Television tv:televisionDataBase) {
             if(tv.getID() == ID)
             {
+                String oldModel = tv.getModel();
                 tv.setModel(model);
-                return ResponseEntity.ok("Tv found " + tv.getModel());
+                return ResponseEntity.ok("Tv found changed model:"+ oldModel + "To : " + tv.getModel());
+
             }
         }
         throw new RecordNotFoundException("Tv not found");
@@ -52,7 +58,7 @@ public class TelevisionsController {
         for (Television tv:televisionDataBase) {
             if(tv.getID() == ID)
             {
-                return ResponseEntity.ok("Tv found " + tv.getName());
+                return ResponseEntity.ok("Tv found " + tv.getName() +" " +tv.getModel());
             }
         }
         throw new RecordNotFoundException("Tv not found");
