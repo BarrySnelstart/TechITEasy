@@ -14,21 +14,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/television")
+@RequestMapping("/televisions")
 public class TelevisionsController {
-    @Autowired private TelevisionRepository televisionRepository;
-      List <Television> televisionDataBase = new ArrayList <>();
-    @GetMapping("televisions/{id}")
-    public ResponseEntity<Television> getTvById(@PathVariable("id")  long id) {
-        Optional<Television> televisionSaved = televisionRepository.findById(id);
-        return ResponseEntity.ok(televisionSaved.get());
-    }
+    @Autowired TelevisionRepository televisionRepository;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Television> getTelevision(@PathVariable("id") Long id) {
+        Optional<Television> television = televisionRepository.findById(id);
+        Television television1 = television.get();
+        return ResponseEntity.ok().body(television1);
+        }
 
     @PostMapping
-    public ResponseEntity<Television> addTvToDataBase (@RequestBody Television television){
-    Television televisionSaved = televisionRepository.save(television);
+        public ResponseEntity<Television> addTvToDataBase (@RequestBody Television television){
+        Television televisionSaved = televisionRepository.save(television);
         return ResponseEntity.created(null).body(televisionSaved);
-    }
+        }
 
 
 }

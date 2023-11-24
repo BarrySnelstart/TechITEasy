@@ -13,8 +13,8 @@ import lombok.Setter;
 public class Television {
     @Id
     @GeneratedValue
-
     private Long id;
+
     private String type;
     private String brand;
     private String name;
