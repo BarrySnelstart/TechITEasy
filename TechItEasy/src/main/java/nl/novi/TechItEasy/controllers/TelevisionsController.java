@@ -17,34 +17,34 @@ public class TelevisionsController {
         List <Television> televisionDataBase = new ArrayList <>();
 
 
-    @PostMapping()
-    public ResponseEntity <Television> addTvToList(@RequestBody Television television) {
-        television.setID(id);
-        id ++;
-        if(television.getName().length() >  20)
-        {
-            throw new NameToLongException("Name is to long");
-        }
-        this.televisionDataBase.add(television);
-
-        return new  ResponseEntity<>(television,HttpStatus.CREATED);
-    }
+//    @PostMapping()
+//    public ResponseEntity <Television> addTvToList(@RequestBody Television television) {
+//        television.setID(id);
+//        id ++;
+//        if(television.getName().length() >  20)
+//        {
+//            throw new NameToLongException("Name is to long");
+//        }
+//        this.televisionDataBase.add(television);
+//
+//        return new  ResponseEntity<>(television,HttpStatus.CREATED);
+//    }
 
     // ------------------------------------------------------------------------
-    @PutMapping("/{ID}")
-    public ResponseEntity<String> changeTvModelName(@PathVariable int ID, @RequestBody String model) {
-
-        for (Television tv:televisionDataBase) {
-            if(tv.getID() == ID)
-            {
-                String oldModel = tv.getModel();
-                tv.setModel(model);
-                return ResponseEntity.ok("Tv found changed model:"+ oldModel + "To : " + tv.getModel());
-
-            }
-        }
-        throw new RecordNotFoundException("Tv not found");
-    }
+//    @PutMapping("/{ID}")
+//    public ResponseEntity<String> changeTvModelName(@PathVariable int ID, @RequestBody String model) {
+//
+//        for (Television tv:televisionDataBase) {
+//            if(tv.getID() == ID)
+//            {
+//                String oldModel = tv.getModel();
+//                tv.setModel(model);
+//                return ResponseEntity.ok("Tv found changed model:"+ oldModel + "To : " + tv.getModel());
+//
+//            }
+//        }
+//        throw new RecordNotFoundException("Tv not found");
+//    }
 
     // ------------------------------------------------------------------------
     @GetMapping()
@@ -52,40 +52,40 @@ public class TelevisionsController {
         return new ResponseEntity<>(this.televisionDataBase, HttpStatus.OK);
     }
 
-    @GetMapping("/{ID}")
-    public ResponseEntity <String> getTvByID(@PathVariable int ID) {
-
-        for (Television tv:televisionDataBase) {
-            if(tv.getID() == ID)
-            {
-                return ResponseEntity.ok("Tv found " + tv.getName() +" " +tv.getModel());
-            }
-        }
-        throw new RecordNotFoundException("Tv not found");
-    }
+//    @GetMapping("/{ID}")
+//    public ResponseEntity <String> getTvByID(@PathVariable int ID) {
+//
+//        for (Television tv:televisionDataBase) {
+//            if(tv.getID() == ID)
+//            {
+//                return ResponseEntity.ok("Tv found " + tv.getName() +" " +tv.getModel());
+//            }
+//        }
+//        throw new RecordNotFoundException("Tv not found");
+//    }
 
 //    // ------------------------------------------------------------------------
-    @DeleteMapping("/{ID}")
-    public ResponseEntity deleteTv(@PathVariable int ID) {
-    List<Television> deleteList = new ArrayList<>();
-        for (Television tv:televisionDataBase) {
-            if(tv.getID() == ID)
-            {
-                deleteList.add(tv);
-            }
-
-        }
-        if(!deleteList.isEmpty())
-        {
-            for(Television delete: deleteList)
-            {
-                televisionDataBase.remove(delete);
-            }
-        }
-
-        return ResponseEntity.ok("Deleted");
-
-
-    }
+//    @DeleteMapping("/{ID}")
+//    public ResponseEntity deleteTv(@PathVariable int ID) {
+//    List<Television> deleteList = new ArrayList<>();
+//        for (Television tv:televisionDataBase) {
+//            if(tv.getID() == ID)
+//            {
+//                deleteList.add(tv);
+//            }
+//
+//        }
+//        if(!deleteList.isEmpty())
+//        {
+//            for(Television delete: deleteList)
+//            {
+//                televisionDataBase.remove(delete);
+//            }
+//        }
+//
+//        return ResponseEntity.ok("Deleted");
+//
+//
+//    }
 
 }

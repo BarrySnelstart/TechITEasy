@@ -1,41 +1,45 @@
 package nl.novi.TechItEasy.models;
 
 public class Television {
-    private int ID;
+   private Long id;
+    private String type;
+    private String brand;
     private String name;
-    private String model;
+    private Double price;
+    private Double availableSize;
+    private Double refreshRate;
+    private String screenType;
+    private String screenQuality;
+    private Boolean smartTv;
+    private Boolean wifi;
+    private Boolean voiceControl;
+    private Boolean hdr;
+    private Boolean bluetooth;
+    private Boolean ambiLight;
+    private Integer originalStock;
+    private Integer sold;
 
-    public Television() {
-    }
-    public Television(int ID, String name, String model) {
-        this.ID = ID;
-        this.name = name;
-        this.model = model;
-    }
 
-    public int getID() {
-        return ID;
-    }
+            public enum availableSize {
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+            }
+            public enum refreshRate {
 
-    public String getName() {
-        return name;
-    }
+            }
+            public enum screenType {
 
-    public void setName(String name) {
-        this.name = name;
-    }
+            }
 
-    public String getModel() {
-        return model;
-    }
+            public enum screenQuality {
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+            }
+
+//    default constructor
+//            constructor
+//    alle getters en setters
+
+
+
 
 
 
