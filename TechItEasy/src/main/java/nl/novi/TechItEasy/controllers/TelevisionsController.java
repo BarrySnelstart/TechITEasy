@@ -3,89 +3,32 @@ package nl.novi.TechItEasy.controllers;
 import nl.novi.TechItEasy.exceptions.NameToLongException;
 import nl.novi.TechItEasy.exceptions.RecordNotFoundException;
 import nl.novi.TechItEasy.models.Television;
+import nl.novi.TechItEasy.repositories.TelevisionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/television")
 public class TelevisionsController {
-    int id = 1000;
-        List <Television> televisionDataBase = new ArrayList <>();
-
-
-//    @PostMapping()
-//    public ResponseEntity <Television> addTvToList(@RequestBody Television television) {
-//        television.setID(id);
-//        id ++;
-//        if(television.getName().length() >  20)
-//        {
-//            throw new NameToLongException("Name is to long");
-//        }
-//        this.televisionDataBase.add(television);
-//
-//        return new  ResponseEntity<>(television,HttpStatus.CREATED);
-//    }
-
-    // ------------------------------------------------------------------------
-//    @PutMapping("/{ID}")
-//    public ResponseEntity<String> changeTvModelName(@PathVariable int ID, @RequestBody String model) {
-//
-//        for (Television tv:televisionDataBase) {
-//            if(tv.getID() == ID)
-//            {
-//                String oldModel = tv.getModel();
-//                tv.setModel(model);
-//                return ResponseEntity.ok("Tv found changed model:"+ oldModel + "To : " + tv.getModel());
-//
-//            }
-//        }
-//        throw new RecordNotFoundException("Tv not found");
-//    }
-
-    // ------------------------------------------------------------------------
-    @GetMapping()
-    public ResponseEntity <List<Television>> getAllTelevisions() {
-        return new ResponseEntity<>(this.televisionDataBase, HttpStatus.OK);
+    @Autowired private TelevisionRepository televisionRepository;
+      List <Television> televisionDataBase = new ArrayList <>();
+    @GetMapping("televisions/{id}")
+    public ResponseEntity<Television> getTvById(@PathVariable("id")  long id) {
+        Optional<Television> televisionSaved = televisionRepository.findById(id);
+        return ResponseEntity.ok(televisionSaved.get());
     }
 
-//    @GetMapping("/{ID}")
-//    public ResponseEntity <String> getTvByID(@PathVariable int ID) {
-//
-//        for (Television tv:televisionDataBase) {
-//            if(tv.getID() == ID)
-//            {
-//                return ResponseEntity.ok("Tv found " + tv.getName() +" " +tv.getModel());
-//            }
-//        }
-//        throw new RecordNotFoundException("Tv not found");
-//    }
+    @PostMapping
+    public ResponseEntity<Television> addTvToDataBase (@RequestBody Television television){
+    Television televisionSaved = televisionRepository.save(television);
+        return ResponseEntity.created(null).body(televisionSaved);
+    }
 
-//    // ------------------------------------------------------------------------
-//    @DeleteMapping("/{ID}")
-//    public ResponseEntity deleteTv(@PathVariable int ID) {
-//    List<Television> deleteList = new ArrayList<>();
-//        for (Television tv:televisionDataBase) {
-//            if(tv.getID() == ID)
-//            {
-//                deleteList.add(tv);
-//            }
-//
-//        }
-//        if(!deleteList.isEmpty())
-//        {
-//            for(Television delete: deleteList)
-//            {
-//                televisionDataBase.remove(delete);
-//            }
-//        }
-//
-//        return ResponseEntity.ok("Deleted");
-//
-//
-//    }
 
 }
