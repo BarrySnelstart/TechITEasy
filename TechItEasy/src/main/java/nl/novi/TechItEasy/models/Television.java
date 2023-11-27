@@ -6,8 +6,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
 @Entity
-@Table(name="televisions")
+@Table(name = "televisions")
 @Getter
 @Setter
 public class Television {
@@ -16,6 +17,11 @@ public class Television {
     private Long id;
 
     private String type;
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     private String brand;
     private String name;
     private Double price;
@@ -31,36 +37,6 @@ public class Television {
     private Boolean ambiLight;
     private Integer originalStock;
     private Integer sold;
-
-    public Television (){
-
-    }
-    public Television(Long id, String type, String brand, String name, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, Integer originalStock, Integer sold) {
-        this.id = id;
-        this.type = type;
-        this.brand = brand;
-        this.name = name;
-        this.price = price;
-        this.availableSize = availableSize;
-        this.refreshRate = refreshRate;
-        this.screenType = screenType;
-        this.screenQuality = screenQuality;
-        this.smartTv = smartTv;
-        this.wifi = wifi;
-        this.voiceControl = voiceControl;
-        this.hdr = hdr;
-        this.bluetooth = bluetooth;
-        this.ambiLight = ambiLight;
-        this.originalStock = originalStock;
-        this.sold = sold;
-    }
-
-
-
-
-
-
-
 
 
 }
