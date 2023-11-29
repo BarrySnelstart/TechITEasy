@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"type\" : \"Televisie\",\r\n        \"brand\" : \"Samsung\",\r\n        \"name\" : \"X35000\",\r\n        \"price\" : \"499\",\r\n        \"availableSize\" : \"klein\",\r\n        \"refreshRate\" : 120,\r\n        \"screenType\" : \"IPS\",\r\n        \"screenQuality\" : \"Great\",\r\n        \"smartTv\" : \"True\",\r\n        \"wifi\" : \"True\",\r\n        \"voiceControl\" : \"False\",\r\n        \"hdr\" : \"True\",\r\n        \"bluetooth\" : \"True\",\r\n        \"ambiLight\" : \"false\",\r\n        \"origionalStock\" : 1,\r\n        \"sold\" : 10\r\n}",
+					"raw": "{\r\n        \"type\" : \"Televisie\",\r\n        \"brand\" : \"Samsung\",\r\n        \"name\" : \"X35000\",\r\n        \"price\" : \"499\",\r\n        \"availableSize\" : \"klein\",\r\n        \"refreshRate\" : 120,\r\n        \"screenType\" : \"IPS\",\r\n        \"screenQuality\" : \"Great\",\r\n        \"smartTv\" : \"True\",\r\n        \"wifi\" : \"True\",\r\n        \"voiceControl\" : \"False\",\r\n        \"hdr\" : \"True\",\r\n        \"bluetooth\" : \"True\",\r\n        \"ambiLight\" : \"false\",\r\n        \"origionalStock\" : 1,\r\n        \"sold\" : 10,\r\n        \"datePurchase\" : \"2023-01-01\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
