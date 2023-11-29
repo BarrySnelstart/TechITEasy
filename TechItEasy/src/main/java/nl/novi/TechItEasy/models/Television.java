@@ -7,27 +7,27 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "televisions")
+
+
 @Getter
 @Setter
+
 public class Television {
+
     @Id
     @GeneratedValue
     private Long id;
-
+    private int sold;
     private String type;
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     private String brand;
     private String name;
     private Double price;
-    private Double availableSize;
-    private Double refreshRate;
-    private String screenType;
+    private String availableSize;
+    private int refreshRate;
     private String screenQuality;
     private Boolean smartTv;
     private Boolean wifi;
@@ -35,8 +35,10 @@ public class Television {
     private Boolean hdr;
     private Boolean bluetooth;
     private Boolean ambiLight;
-    private Integer originalStock;
-    private Integer sold;
+    private int originalStock;
+    private screenType screenType;
+    private Date dateSold;
+    private Date datePurchase;
 
 
 }
