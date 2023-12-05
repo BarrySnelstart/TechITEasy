@@ -30,10 +30,10 @@ public class TelevisionsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TelevisionDto> updateTelevision(@PathVariable Long id, @RequestBody TelevisionDto newTelevision) {
+    public TelevisionDto updateTelevision(@PathVariable Long id, @RequestBody TelevisionDto newTelevision) {
 
 
-return null;
+        return televisionService.updateTelevision(id, newTelevision);
     }
 
 }
