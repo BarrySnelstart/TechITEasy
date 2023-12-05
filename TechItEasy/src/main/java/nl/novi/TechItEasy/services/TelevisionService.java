@@ -99,6 +99,10 @@ public class TelevisionService {
 
     }
 
+    public void deleteTelevision (Long id){
+        repository.deleteById(id);
+    }
+
 }
 
 

@@ -31,9 +31,11 @@ public class TelevisionsController {
 
     @PutMapping("/{id}")
     public TelevisionDto updateTelevision(@PathVariable Long id, @RequestBody TelevisionDto newTelevision) {
-
-
         return televisionService.updateTelevision(id, newTelevision);
     }
-
+@DeleteMapping("/{id}")
+    public ResponseEntity deleteTelevision(@PathVariable Long id){
+        televisionService.deleteTelevision(id);
+        return ResponseEntity.ok("deleted");
+}
 }
