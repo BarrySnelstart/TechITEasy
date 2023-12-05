@@ -23,7 +23,5 @@ public class TelevisionDto {
     public nl.novi.TechItEasy.models.screenType screenType;
     public Date dateSold;
     public Date datePurchase;
-
-
 }
 
