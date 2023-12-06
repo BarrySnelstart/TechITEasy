@@ -166,14 +166,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/televisions/2",
+					"raw": "localhost:8080/televisions/1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"televisions",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -194,14 +194,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/televisions/1",
+					"raw": "localhost:8080/televisions/3",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"televisions",
-						"1"
+						"3"
 					]
 				}
 			},
