@@ -1,14 +1,16 @@
 package nl.novi.TechItEasy.services;
 
 import nl.novi.TechItEasy.controllers.ExceptionController;
+import nl.novi.TechItEasy.dto.SalesInfoDto;
 import nl.novi.TechItEasy.dto.TelevisionDto;
 import nl.novi.TechItEasy.exceptions.RecordNotFoundException;
 import nl.novi.TechItEasy.models.Television;
 import nl.novi.TechItEasy.repositories.TelevisionRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class TelevisionService {
@@ -18,6 +20,22 @@ public class TelevisionService {
         this.repository = repository;
     }
 
+    public SalesInfoDto getTelevisionSalesInfoById (Long id){
+        SalesInfoDto dto = new SalesInfoDto();
+        Television television1 = repository.getReferenceById(id);
+        Optional <Television> checkIfPresent = repository.findById(id);
+        if (checkIfPresent.isPresent()) {
+            dto.id = television1.getId();
+            dto.name = television1.getName();
+            dto.price = television1.getPrice();
+            dto.originalStock = television1.getOriginalStock();
+            dto.sold = television1.getSold();
+            return dto;
+        } else{
+            throw new RecordNotFoundException("Television with ID not found");
+        }
+
+    }
     public TelevisionDto postTelevision(TelevisionDto televisionDto) {
         Television television = new Television();
         television.setName(televisionDto.name);
@@ -59,7 +77,8 @@ public class TelevisionService {
     public TelevisionDto getTelevisionById(Long id) {
         TelevisionDto dto = new TelevisionDto();
         Television television1 = repository.getReferenceById(id);
-        if (repository.getReferenceById(id) != null) {
+        Optional <Television> checkIfPresent = repository.findById(id);
+        if (checkIfPresent.isPresent()) {
             dto.id = television1.getId();
             dto.type = television1.getType();
             dto.brand = television1.getBrand();
@@ -80,8 +99,8 @@ public class TelevisionService {
 
 
             return dto;
-        } else {
-            throw new RecordNotFoundException();
+        } else{
+            throw new RecordNotFoundException("Television with ID not found");
         }
 
     }
@@ -130,8 +149,15 @@ public class TelevisionService {
 
     }
 
-    public void deleteTelevision(Long id) {
-        repository.deleteById(id);
+    public ResponseEntity deleteTelevision(Long id) {
+        Optional <Television> checkIfPresent = repository.findById(id);
+        if (checkIfPresent.isPresent()) {
+            repository.deleteById(id);
+            return ResponseEntity.ok("Deleted");
+        } else {
+            throw new RecordNotFoundException("Record not found in database");
+        }
+
     }
 
 

@@ -1,5 +1,5 @@
 package nl.novi.TechItEasy.controllers;
-
+import nl.novi.TechItEasy.dto.SalesInfoDto;
 import nl.novi.TechItEasy.dto.TelevisionDto;
 import nl.novi.TechItEasy.models.Television;
 import nl.novi.TechItEasy.services.TelevisionService;
@@ -20,9 +20,16 @@ public class TelevisionsController {
     }
 
     @PostMapping
-    public ResponseEntity<TelevisionDto> postTelevision(@RequestBody TelevisionDto television) {
+    public ResponseEntity <TelevisionDto> postTelevision(@Validated @RequestBody TelevisionDto television) {
         TelevisionDto dto = televisionService.postTelevision(television);
         return ResponseEntity.created(null).body(dto);
+    }
+
+    @GetMapping("/salesInfo/{id}")
+    public ResponseEntity<SalesInfoDto> getSalesInfoById(@PathVariable Long id)
+    {
+        SalesInfoDto salesInfo = televisionService.getTelevisionSalesInfoById(id);
+        return ResponseEntity.ok(salesInfo);
     }
     @GetMapping
     public List <Television> getAllTelevisions() {
@@ -30,16 +37,19 @@ public class TelevisionsController {
     }
 
     @GetMapping("/{id}")
-    public TelevisionDto getTelevisionById(@PathVariable Long id){
-        return televisionService.getTelevisionById(id);
+    public ResponseEntity<TelevisionDto> getTelevisionById(@PathVariable Long id) {
+        TelevisionDto television = televisionService.getTelevisionById(id);
+        return ResponseEntity.ok().body(television);
     }
+
     @PutMapping("/{id}")
     public TelevisionDto updateTelevision(@PathVariable Long id, @RequestBody TelevisionDto newTelevision) {
         return televisionService.updateTelevision(id, newTelevision);
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteTelevision(@PathVariable Long id){
+    public ResponseEntity deleteTelevision(@PathVariable Long id) {
         televisionService.deleteTelevision(id);
-        return ResponseEntity.ok("deleted");
-}
+    return ResponseEntity.ok("Television deleted");
+    }
 }

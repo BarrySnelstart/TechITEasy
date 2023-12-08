@@ -6,10 +6,8 @@ public class RecordNotFoundException extends RuntimeException{
         super ();
     }
     public RecordNotFoundException (String message){
-        super ("Tv niet gevonden");
+        super (message);
     }
-    //    De RecordNotFoundException bevat:
-//    een default exception
-//    een exception met message
+
 
 }
