@@ -1,18 +1,30 @@
 package nl.novi.TechItEasy.controllers;
-
+import nl.novi.TechItEasy.dto.SalesInfoDto;
+import nl.novi.TechItEasy.dto.TelevisionDto;
 import nl.novi.TechItEasy.models.Television;
-import nl.novi.TechItEasy.repositories.TelevisionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import nl.novi.TechItEasy.services.TelevisionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/televisions")
 public class TelevisionsController {
+
+    private final TelevisionService televisionService;
+
+    public TelevisionsController(TelevisionService televisionService) {
+        this.televisionService = televisionService;
+    }
+
+    @PostMapping
+    public ResponseEntity <TelevisionDto> postTelevision(@Validated @RequestBody TelevisionDto television) {
+        TelevisionDto dto = televisionService.postTelevision(television);
+        return ResponseEntity.created(null).body(dto);
+=======
 
   
     @Autowired
@@ -23,9 +35,20 @@ public class TelevisionsController {
         Optional <Television> television = televisionRepository.findById(id);
         Television television1 = television.get();
         return ResponseEntity.ok().body(television1);
+
     }
 
+    @GetMapping("/salesInfo/{id}")
+    public ResponseEntity<SalesInfoDto> getSalesInfoById(@PathVariable Long id)
+    {
+        SalesInfoDto salesInfo = televisionService.getTelevisionSalesInfoById(id);
+        return ResponseEntity.ok(salesInfo);
+    }
     @GetMapping
+
+    public List <Television> getAllTelevisions() {
+        return televisionService.getAllTelevisions();
+
     public ResponseEntity <List <Television>> getTelevisonList() {
         List <Television> television = televisionRepository.findAll();
         return ResponseEntity.ok(television);
@@ -46,7 +69,7 @@ public class TelevisionsController {
         return new  ResponseEntity<>(television,HttpStatus.CREATED);
     }
 
-    // ------------------------------------------------------------------------
+
     @PutMapping("/{ID}")
     public ResponseEntity<String> changeTvModelName(@PathVariable int ID, @RequestBody String model) {
 
@@ -60,13 +83,19 @@ public class TelevisionsController {
             }
         }
         throw new RecordNotFoundException("Tv not found");
+
     }
 
-    @PostMapping
-    public ResponseEntity <Television> addTvToDataBase(@RequestBody Television television) {
-        Television televisionSaved = televisionRepository.save(television);
-        return ResponseEntity.created(null).body(televisionSaved);
+    @GetMapping("/{id}")
+    public ResponseEntity<TelevisionDto> getTelevisionById(@PathVariable Long id) {
+        TelevisionDto television = televisionService.getTelevisionById(id);
+        return ResponseEntity.ok().body(television);
     }
+
+
+    @PutMapping("/{id}")
+    public TelevisionDto updateTelevision(@PathVariable Long id, @RequestBody TelevisionDto newTelevision) {
+        return televisionService.updateTelevision(id, newTelevision);
 
 
     // TODO else statements schrijven voor alle data!
@@ -91,20 +120,9 @@ public class TelevisionsController {
         return ResponseEntity.ok(television2);
     }
 
-    // TODO Exeption Controller not allowed deletion
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteTelevision(@PathVariable("id") Long id) {
-        Television televisionToDelete = televisionRepository.findById(id).get();
-        if (televisionToDelete.getSold() > 0 || televisionToDelete.getOriginalStock() > 0) {
-
-            return new ResponseEntity <>(
-                    "Not allowd to delete an item with stock or history",
-                    HttpStatus.FORBIDDEN);
-        }
-
-        televisionRepository.delete(televisionToDelete);
-        return ResponseEntity.ok("Deleted");
+    public ResponseEntity deleteTelevision(@PathVariable Long id) {
+        televisionService.deleteTelevision(id);
+    return ResponseEntity.ok("Television deleted");
     }
 }
-
-
