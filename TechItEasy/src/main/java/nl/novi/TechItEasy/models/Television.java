@@ -1,42 +1,44 @@
 package nl.novi.TechItEasy.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Date;
+
+@Entity
+@Table(name = "televisions")
+
+
+@Getter
+@Setter
+
 public class Television {
-    private int ID;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private int sold;
+    private String type;
+    private String brand;
     private String name;
-    private String model;
-
-    public Television() {
-    }
-    public Television(int ID, String name, String model) {
-        this.ID = ID;
-        this.name = name;
-        this.model = model;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
+    private Double price;
+    private String availableSize;
+    private int refreshRate;
+    private String screenQuality;
+    private Boolean smartTv;
+    private Boolean wifi;
+    private Boolean voiceControl;
+    private Boolean hdr;
+    private Boolean bluetooth;
+    private Boolean ambiLight;
+    private int originalStock;
+    private screenType screenType;
+    private Date dateSold;
+    private Date datePurchase;
 
 
 }
