@@ -1,12 +1,10 @@
 package nl.novi.TechItEasy.services;
 
-import nl.novi.TechItEasy.controllers.ExceptionController;
 import nl.novi.TechItEasy.dto.SalesInfoDto;
 import nl.novi.TechItEasy.dto.TelevisionDto;
 import nl.novi.TechItEasy.exceptions.RecordNotFoundException;
 import nl.novi.TechItEasy.models.Television;
 import nl.novi.TechItEasy.repositories.TelevisionRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +18,7 @@ public class TelevisionService {
         this.repository = repository;
     }
 
-    public SalesInfoDto getTelevisionSalesInfoById (Long id){
+    public SalesInfoDto getTelevisionSalesInfoById(Long id) {
         SalesInfoDto dto = new SalesInfoDto();
         Television television1 = repository.getReferenceById(id);
         Optional <Television> checkIfPresent = repository.findById(id);
@@ -31,11 +29,12 @@ public class TelevisionService {
             dto.originalStock = television1.getOriginalStock();
             dto.sold = television1.getSold();
             return dto;
-        } else{
+        } else {
             throw new RecordNotFoundException("Television with ID not found");
         }
 
     }
+
     public TelevisionDto postTelevision(TelevisionDto televisionDto) {
         Television television = new Television();
         television.setName(televisionDto.name);
@@ -99,7 +98,7 @@ public class TelevisionService {
 
 
             return dto;
-        } else{
+        } else {
             throw new RecordNotFoundException("Television with ID not found");
         }
 
