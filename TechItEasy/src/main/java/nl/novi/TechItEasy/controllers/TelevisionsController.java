@@ -13,6 +13,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/televisions")
 public class TelevisionsController {
+
+  
     @Autowired
     TelevisionRepository televisionRepository;
 // TODO record not found
@@ -27,6 +29,37 @@ public class TelevisionsController {
     public ResponseEntity <List <Television>> getTelevisonList() {
         List <Television> television = televisionRepository.findAll();
         return ResponseEntity.ok(television);
+    int id = 1000;
+        List <Television> televisionDataBase = new ArrayList <>();
+
+
+    @PostMapping()
+    public ResponseEntity <Television> addTvToList(@RequestBody Television television) {
+        television.setID(id);
+        id ++;
+        if(television.getName().length() >  20)
+        {
+            throw new NameToLongException("Name is to long");
+        }
+        this.televisionDataBase.add(television);
+
+        return new  ResponseEntity<>(television,HttpStatus.CREATED);
+    }
+
+    // ------------------------------------------------------------------------
+    @PutMapping("/{ID}")
+    public ResponseEntity<String> changeTvModelName(@PathVariable int ID, @RequestBody String model) {
+
+        for (Television tv:televisionDataBase) {
+            if(tv.getID() == ID)
+            {
+                String oldModel = tv.getModel();
+                tv.setModel(model);
+                return ResponseEntity.ok("Tv found changed model:"+ oldModel + "To : " + tv.getModel());
+
+            }
+        }
+        throw new RecordNotFoundException("Tv not found");
     }
 
     @PostMapping
@@ -35,6 +68,7 @@ public class TelevisionsController {
         return ResponseEntity.created(null).body(televisionSaved);
     }
 
+
     // TODO else statements schrijven voor alle data!
     @PutMapping("/{id}")
     public ResponseEntity <Optional <Television>> changeTvValue(@PathVariable("id") Long id, @RequestBody Television television) {
@@ -42,6 +76,16 @@ public class TelevisionsController {
         Television television1 = television2.get();
         if (television.getBrand() != null) {
             television1.setBrand(television.getBrand());
+
+    @GetMapping("/{ID}")
+    public ResponseEntity <String> getTvByID(@PathVariable int ID) {
+
+        for (Television tv:televisionDataBase) {
+            if(tv.getID() == ID)
+            {
+                return ResponseEntity.ok("Tv found " + tv.getName() +" " +tv.getModel());
+            }
+
         }
         televisionRepository.save(television1);
         return ResponseEntity.ok(television2);
