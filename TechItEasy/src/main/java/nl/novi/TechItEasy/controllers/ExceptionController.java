@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ExceptionController {
-//    De ExceptionController bevat:
+    //    De ExceptionController bevat:
 //    een exceptionhandler
     @ExceptionHandler(value = RecordNotFoundException.class)
     public ResponseEntity<Object> recordNotFoundException (RecordNotFoundException exception){

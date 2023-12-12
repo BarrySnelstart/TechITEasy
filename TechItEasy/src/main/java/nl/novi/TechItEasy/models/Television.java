@@ -11,8 +11,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "televisions")
-
-
 @Getter
 @Setter
 
@@ -39,10 +37,6 @@ public class Television {
     private screenType screenType;
     private Date dateSold;
     private Date datePurchase;
-
-
-
-
 }
 
 
