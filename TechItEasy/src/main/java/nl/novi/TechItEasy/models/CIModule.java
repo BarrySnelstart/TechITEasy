@@ -16,9 +16,9 @@ import lombok.Setter;
 public class CIModule {
     @Id
     @GeneratedValue
-    Long id;
+    private    Long id;
 
-    String name;
-    String type;
-    Double price;
+    private   String name;
+    private  String type;
+    private   Double price;
 }

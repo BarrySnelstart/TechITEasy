@@ -15,11 +15,11 @@ public class WallBracket {
 
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
-    String size;
-    Boolean adjustable;
-    String name;
-    Double price;
+    private String size;
+    private Boolean adjustable;
+    private String name;
+    private Double price;
 
 }

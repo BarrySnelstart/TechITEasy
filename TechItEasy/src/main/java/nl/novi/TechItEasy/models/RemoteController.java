@@ -1,10 +1,7 @@
 package nl.novi.TechItEasy.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,18 +11,20 @@ import lombok.Setter;
 @Setter
 
 
-
-
-
 public class RemoteController {
     @Id
     @GeneratedValue
-    Long id;
 
-    String compatibleWith;
-    String batteryType;
-    String name;
-    String brand;
-    Double price;
-    int originalStock;
+    @OneToOne(mappedBy = "remoteControllers")
+    Television television;
+
+    private  Long id;
+
+
+    private String compatibleWith;
+    private String batteryType;
+    private String name;
+    private String brand;
+    private Double price;
+    private int originalStock;
 }
