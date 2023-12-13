@@ -1,4 +1,4 @@
-package nl.novi.TechItEasy.dto;
+package nl.novi.TechItEasy.dto.Television;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;

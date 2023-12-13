@@ -1,6 +1,6 @@
 package nl.novi.TechItEasy.controllers;
 import nl.novi.TechItEasy.dto.SalesInfoDto;
-import nl.novi.TechItEasy.dto.TelevisionDto;
+import nl.novi.TechItEasy.dto.Television.TelevisionDto;
 import nl.novi.TechItEasy.models.Television;
 import nl.novi.TechItEasy.services.TelevisionService;
 import org.springframework.http.ResponseEntity;
